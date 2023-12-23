@@ -1,8 +1,102 @@
 README file:
 
-# Ethereum Proof: Intermediate Course Module 2 Project by Metacrafters
+# Ethereum Proof: Intermediate Course Module 
+# Wealth Management Smart Contract
 
-Welcome to my project for the ETH Proof: Intermediate course Module 2 by Metacrafters. This project involves creating a simple Ethereum smart contract with various functions and customizing the provided frontend application to display the values returned by these functions.
+## Overview
+
+This Solidity smart contract, named `WealthManagement`, serves as a wealth management system, allowing account owners to manage their funds, request loans, and change secret keys. Below, you'll find details about the contract's structure, variables, functions, and usage.
+
+## Contract Details
+
+- **Solidity Version:** 0.8.9
+- **Contract Name:** WealthManagement
+
+## Contract Variables
+
+- `accountOwner`: Ethereum address of the account owner.
+- `accountFunds`: Total funds available in the account.
+- `secretKey`: Integer representing the secret key associated with the account.
+- `loanAmount`: Amount of the requested loan.
+- `loanDuration`: Duration of the loan in months.
+- `monthlyInstallment`: Monthly installment amount for the loan.
+
+## Events
+
+### `FundsAdded`
+
+- **Parameters:** `amount` - Amount of funds added to the account.
+
+### `FundsWithdrawn`
+
+- **Parameters:** `amount` - Amount of funds withdrawn from the account.
+
+### `KeyChanged`
+
+- **Parameters:** `newKey` - New secret key assigned to the account.
+
+### `LoanRequested`
+
+- **Parameters:**
+  - `requestedAmount`: Amount of the loan requested.
+  - `termInMonths`: Duration of the loan in months.
+  - `monthlyInstallment`: Monthly installment amount for the loan.
+
+## Constructor
+
+- **Parameters:**
+  - `initialFunds`: Initial funds deposited into the account.
+  - `key`: Secret key associated with the account.
+- **Details:**
+  - Initializes `accountOwner` with the deployer's address.
+  - Sets initial funds and secret key.
+
+## Functions
+
+### `getAccountFunds`
+
+- **Visibility:** Public
+- **Returns:** `uint256`
+- **Details:** Retrieves the current account funds.
+
+### `addFunds`
+
+- **Visibility:** Public
+- **Parameters:** `amount` - Amount of funds to be added.
+- **Details:**
+  - Adds funds to the account.
+  - Emits a `FundsAdded` event.
+
+### `withdrawFunds`
+
+- **Visibility:** Public
+- **Parameters:** `withdrawalAmount` - Amount of funds to be withdrawn.
+- **Details:**
+  - Withdraws funds from the account.
+  - Emits a `FundsWithdrawn` event.
+  - Throws an `InsufficientFunds` error if the withdrawal amount exceeds the account balance.
+
+### `changeSecretKey`
+
+- **Visibility:** Public
+- **Parameters:** `newKey` - New secret key to be set.
+- **Details:**
+  - Changes the secret key associated with the account.
+  - Emits a `KeyChanged` event.
+
+### `getSecretKey`
+
+- **Visibility:** Public
+- **Returns:** `uint256`
+- **Details:** Retrieves the secret key associated with the account.
+
+### `requestLoan`
+
+- **Visibility:** Public
+- **Parameters:**
+  - `requestedAmount`: Amount of the loan requested.
+  - `termInMonths`: Duration of
+
 
 ## Getting Started
 
@@ -37,6 +131,3 @@ To run this project on your computer, follow the steps below after cloning the G
 
 After completing these steps, the project will be running locally, typically accessible at http://localhost:3000/.
 
-## Explore the Project
-
-Explore the functionalities provided by the smart contract through the frontend interface. The application will interact with the deployed smart contract, showcasing the values returned by various functions.
